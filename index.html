@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Windows Session</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+    background: url("https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc") no-repeat center/cover;
+}
+
+/* flou type Windows 11 */
+.blur-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(18px);
+    background: rgba(0,0,0,0.25);
+}
+
+/* fenêtre login */
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 25px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    text-align: center;
+    color: white;
+}
+
+/* profil */
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: auto;
+    border: 2px solid rgba(255,255,255,0.7);
+    object-fit: cover;
+}
+
+/* nom */
+.username {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* input */
+input {
+    margin-top: 18px;
+    width: 85%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* bouton */
+button {
+    margin-top: 12px;
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #4aa3ff;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #2f8de0;
+}
+
+/* erreur */
+.error {
+    color: #ff4d4d;
+    font-weight: 600;
+    margin-top: 10px;
+    display: none;
+}
+
+/* écran succès */
+.success-screen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* barre des tâches fake */
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    background: rgba(20,20,20,0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    color: white;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="blur-overlay"></div>
+
+<div class="window" id="loginWindow">
+
+    <img class="avatar" src="https://placedog.net/300/300" alt="chien">
+    <div class="username">Alice Cartier</div>
+
+    <div class="error" id="error">Mot de passe incorrect</div>
+
+    <input id="code" type="text" placeholder="Entrer le code de session">
+
+    <button onclick="checkCode()">Se connecter</button>
+
+</div>
+
+<div class="success-screen" id="success">
+    🎉 Bravo ! session déverrouillée. Rendez-vous en page 8.
+</div>
+
+<div class="taskbar">
+    ⊞ Windows | Escape Game Session
+</div>
+
+<script>
+function checkCode() {
+    const code = document.getElementById("code").value;
+    const error = document.getElementById("error");
+
+    if (code === "A5L1C2E4") {
+        document.getElementById("loginWindow").style.display = "none";
+        document.getElementById("success").style.display = "flex";
+    } else {
+        error.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
